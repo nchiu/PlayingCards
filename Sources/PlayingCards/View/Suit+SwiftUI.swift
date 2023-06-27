@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Deck.Card.Suit {
+public extension Deck.Card.Suit {
 	/// SF Symbol representing the suit
 	/// - Parameter filled: If `true` the filled variant of the symbol will be used. Optional, defaults to `true`
 	/// - Returns: SF Symbol representing the suit

@@ -13,14 +13,20 @@ extension Image {
 	}
 
 	enum SFSymbol: String, CaseIterable {
+		case crown = "crown"
+		case crownFill = "crown.fill"
+		case partyPopper = "party.popper"
 		case questionMarkSquareDashed = "questionmark.square.dashed"
+		case theaterMasks = "theatermasks"
 	}
 }
 
 struct SFSymbol_Previews: PreviewProvider {
 	static var previews: some View {
-		ForEach(Image.SFSymbol.allCases, id: \.self) {
-			Image(sfSymbol: $0)
+		VStack {
+			ForEach(Image.SFSymbol.allCases, id: \.self) {
+				Image(sfSymbol: $0)
+			}
 		}
 	}
 }

@@ -159,22 +159,22 @@ private extension PlayingCardView {
 					// Not face cards, this case should never be reached
 					Image(sfSymbol: .questionMarkSquareDashed)
 				case .jack:
-					Image(systemName: "party.popper") // TODO: get face card images
+					Image(sfSymbol: .partyPopper) // TODO: get face card images
 						.resizable()
 						.scaledToFit()
 						.padding()
 				case .queen:
-					Image(systemName: "crown") // TODO: get face card images
+					Image(sfSymbol: .crown) // TODO: get face card images
 						.resizable()
 						.scaledToFit()
 						.padding()
 				case .king:
-					Image(systemName: "crown.fill") // TODO: get face card images
+					Image(sfSymbol: .crownFill) // TODO: get face card images
 						.resizable()
 						.scaledToFit()
 						.padding()
 				case .joker:
-					Image(systemName: "theatermasks") // TODO: get face card images
+					Image(sfSymbol: .theaterMasks) // TODO: get face card images
 						.resizable()
 						.scaledToFit()
 						.padding()
