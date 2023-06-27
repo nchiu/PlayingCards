@@ -33,6 +33,7 @@ public extension Deck.Card {
 		rank.value(aceIsHigh: aceIsHigh)
 	}
 
+	/// Formatted description combining the `rank` and `suit`. For example, `"ace of spades"`.
 	var description: String {
 		.init(
 			format: NSLocalizedString(

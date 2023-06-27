@@ -127,6 +127,12 @@ public extension Deck {
 		}
 	}
 
+	/// Observe all cards remaining in the deck.
+	/// - Returns: All cards remaining in the deck
+	func peak() -> [Card] {
+		cards
+	}
+
 	/// Calculates the probability of drawing a card of a specific rank, suit, or both.
 	/// - Parameters:
 	///   - rank: The rank of interest
