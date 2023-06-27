@@ -6,7 +6,7 @@ final class PlayingCardsTests: XCTestCase {
 	private let sortOrder = "♠︎1♣︎1♥︎1♦︎1♠︎2♣︎2♥︎2♦︎2♠︎3♣︎3♥︎3♦︎3♠︎4♣︎4♥︎4♦︎4♠︎5♣︎5♥︎5♦︎5♠︎6♣︎6♥︎6♦︎6♠︎7♣︎7♥︎7♦︎7♠︎8♣︎8♥︎8♦︎8♠︎9♣︎9♥︎9♦︎9♠︎10♣︎10♥︎10♦︎10♠︎11♣︎11♥︎11♦︎11♠︎12♣︎12♥︎12♦︎12♠︎13♣︎13♥︎13♦︎13"
 
 	func testDeckDefaultInitialization() throws {
-		var deck = Deck()
+		let deck = Deck()
 		XCTAssertEqual(deck.count, 52)
 		XCTAssertEqual(deck.aceIsHigh, false)
 		XCTAssertEqual(deck.isEmpty, false)
@@ -14,7 +14,7 @@ final class PlayingCardsTests: XCTestCase {
 	}
 
 	func testMultiDeckInitialization() throws {
-		var deck = Deck(multiple: 2)
+		let deck = Deck(multiple: 2)
 		XCTAssertEqual(deck.count, 104)
 		XCTAssertEqual(deck.aceIsHigh, false)
 		XCTAssertEqual(deck.isEmpty, false)

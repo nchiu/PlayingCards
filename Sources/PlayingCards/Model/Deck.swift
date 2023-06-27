@@ -26,16 +26,32 @@ public struct Deck: Identifiable {
 	/// - Parameters:
 	///   - multiple: The number of times to repeat each card. `1` creates a 52 card deck with one of each card, `2` creates a 104 card deck with two of each card, and so on. Optional, defaults to `1`
 	///   - aceIsHigh: If `true`, `ace` is valued higher than `king`, else `ace` is values lower than `two`. Optional, defaults to `false`.
-	public init(multiple: Int = 1, aceIsHigh: Bool = false) {
+	///   - includeJokers: If `true`, 2 joker cards will be included per multiple. Optional, defaults to `false`.
+	public init(multiple: Int = 1, aceIsHigh: Bool = false, includeJokers: Bool = false) {
 		self.aceIsHigh = aceIsHigh
 		cards = (1...multiple).flatMap { _ in
 			Card.Suit.allCases.flatMap { suit in
-				Card.Rank.allCases.map { rank in
-						.init(
-							rank: rank,
-							suit: suit,
-							aceIsHigh: aceIsHigh
-						)
+				Card.Rank.allCases.compactMap { rank in
+					switch rank {
+					case .ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king:
+						break
+					case .joker:
+						if includeJokers {
+							switch suit {
+							case .club, .diamond:
+								return nil
+							case .heart, .spade:
+								break
+							}
+						} else {
+							return nil
+						}
+					}
+					return .init(
+						rank: rank,
+						suit: suit,
+						aceIsHigh: aceIsHigh
+					)
 				}
 			}
 		}
