@@ -84,15 +84,34 @@ public extension Deck {
 	/// Removes several cards from the deck
 	/// - Returns: The cards removed from the deck
 	mutating func draw(count: Int) -> [Card] {
-		guard count > 0 else { return [] }
-		guard count < self.count else {
-			let returnCards = cards
-			cards = []
-			return returnCards
+		guard !isEmpty,
+					count > 0
+		else { return [] }
+
+		return (1...min(count, self.count)).compactMap { _ in draw() }
+	}
+
+	/// Returns a card to the deck
+	/// - Parameters:
+	///   - card: The card to go into the deck
+	///   - position: Where to insert the `card`in the deck
+	mutating func bury(card: Card, at position: BuryPosition) {
+		switch position {
+		case .top:
+			cards.append(card)
+		case .middle:
+			cards.insert(card, at: cards.indices.randomElement() ?? 0)
+		case .bottom:
+			cards.insert(card, at: 0)
 		}
-		return (1...count).map { _ in
-			cards.removeLast()
-		}
+	}
+
+	/// Returns an array of cards to the deck
+	/// - Parameters:
+	///   - cards: The cards to go into the deck
+	///   - position: Where to insert the `cards`in the deck. If the position is `middle`, the cards will be split up and individually inserted at random positions, otherwise they will all be added consecutively to the `top` or `bottom` of the deck.
+	mutating func bury(cards: [Card], at position: BuryPosition) {
+		cards.forEach { bury(card: $0, at: position) }
 	}
 
 	/// Randomizes the order of the cards in the deck
@@ -128,6 +147,14 @@ public extension Deck {
 			return nil
 		}
 		return Double(matchingCards.count) / Double(cards.count)
+	}
+}
+
+public extension Deck {
+	enum BuryPosition {
+		case top
+		case middle
+		case bottom
 	}
 }
 
