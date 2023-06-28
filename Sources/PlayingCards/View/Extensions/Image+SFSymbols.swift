@@ -21,6 +21,7 @@ extension Image {
 	}
 }
 
+// MARK: Preview Provider
 struct SFSymbol_Previews: PreviewProvider {
 	static var previews: some View {
 		VStack {

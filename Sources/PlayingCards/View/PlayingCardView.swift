@@ -13,10 +13,10 @@ public struct PlayingCardView: View {
 	// MARK: Properties
 
 	/// The card to display
-	let card: Deck.Card
+	public let card: Deck.Card
 
 	/// The name of the font used in the text elements of the playing card
-	let fontName: String
+	public let fontName: String
 
 	// MARK: Initializers
 
@@ -24,7 +24,7 @@ public struct PlayingCardView: View {
 	/// - Parameters:
 	///   - card: The card to display
 	///   - fontName: The name of the font used in the text elements of the playing card. Optional, defaults to `"Futura"`
-	init(card: Deck.Card, fontName: String = "Futura") {
+	public init(card: Deck.Card, fontName: String = "Futura") {
 		self.card = card
 		self.fontName = fontName
 	}
