@@ -36,8 +36,18 @@ public struct PlayingCardView: View {
 	public var body: some View {
 		GeometryReader { geometry in
 			ZStack {
-				RoundedRectangle(cornerRadius: geometry.size.height / 15, style: .continuous)
-					.strokeBorder(outlineColor)
+				backgroundColor
+					.clipShape(
+						RoundedRectangle(
+							cornerRadius: cornerRadius(for: geometry),
+							style: .continuous
+						)
+					)
+				RoundedRectangle(
+					cornerRadius: cornerRadius(for: geometry),
+					style: .continuous
+				)
+				.strokeBorder(outlineColor)
 
 				if geometry.size.isCompact {
 					rankCornerText(forSize: geometry.size)
@@ -103,6 +113,10 @@ private extension PlayingCardView {
 		case .red:
 			return.red
 		}
+	}
+
+	func cornerRadius(for geometry: GeometryProxy) -> CGFloat {
+		geometry.size.height / 15
 	}
 
 	func rankCornerText(forSize size: CGSize) -> some View {
